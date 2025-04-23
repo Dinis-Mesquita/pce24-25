@@ -1,0 +1,5 @@
+# Objetivos 13/03/2025
+- Set up do Git partilhado
+- Instalação do NodeJS
+- Instalação do ExpressJS
+- Instalação do Postman
