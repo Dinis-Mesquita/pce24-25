@@ -1,0 +1,879 @@
+{
+    "Functions": [],
+    "InternalFunctions": [],
+    "Occurrences": {
+        "lowerOccurrences": 1,
+        "upperOccurrences": 1
+    },
+    "Refset": [],
+    "TaskEditable": [
+        "All"
+    ],
+    "TaskInReport": [
+        "All"
+    ],
+    "TaskVisible": [
+        "All"
+    ],
+    "archetypeId": "openEHR-EHR-COMPOSITION.encounter.v1",
+    "category": {
+        "code": 433,
+        "text": "event"
+    },
+    "itemName": "App_data",
+    "itemPath": "",
+    "items": [
+        [
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.menstrual_diary.v1",
+                "data_type": "Title",
+                "itemName": "Menstrual diary",
+                "itemPath": "items.0.0",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Flow",
+                        "itemPath": "items.0.0.items.0",
+                        "itemsList": [
+                            {
+                                "code": "at0005",
+                                "description": "For example a presence of heavy menstrual flow that exceeded capacity of menstrual products to absorb the flow.",
+                                "text": "Flooding"
+                            },
+                            {
+                                "code": "at0006",
+                                "description": "For example needing to change a high-absorbency tampon or pad every one to four hours.",
+                                "text": "Heavy flow"
+                            },
+                            {
+                                "code": "at0007",
+                                "description": "For example needing to change a regular-absorbency tampon or pad every three to four hours.",
+                                "text": "Medium flow"
+                            },
+                            {
+                                "code": "at0008",
+                                "description": "For example needing to change a low- or regular-absorbency tampon or pad one to three times per day.",
+                                "text": "Light flow"
+                            },
+                            {
+                                "code": "at0009",
+                                "description": "For example a drop or two of blood, not even requiring menstrual products.",
+                                "text": "Spotting"
+                            },
+                            {
+                                "code": "at0022",
+                                "description": "No menstrual bleeding.",
+                                "text": "No bleeding"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0004",
+                            "description": "Semi-quantitative estimation of menstrual flow per day.",
+                            "text": "Flow"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_TEXT",
+                        "itemName": "Flow",
+                        "itemPath": "items.0.0.items.1",
+                        "node": {
+                            "code": "at0004",
+                            "description": "Semi-quantitative estimation of menstrual flow per day.",
+                            "text": "Flow"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Blood clots",
+                        "itemPath": "items.0.0.items.2",
+                        "itemsList": [
+                            {
+                                "code": "at0015",
+                                "description": "Blood clots occurred during the menstrual flow.",
+                                "text": "Present"
+                            },
+                            {
+                                "code": "at0016",
+                                "description": "Blood clots did not occur during the menstrual flow.",
+                                "text": "Absent"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0014",
+                            "description": "Presence of blood clots.",
+                            "text": "Blood clots"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/[at0014]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Color",
+                        "itemPath": "items.0.0.items.3",
+                        "itemsList": [
+                            {
+                                "code": "Colors::0",
+                                "text": "Bright red"
+                            },
+                            {
+                                "code": "Colors::1",
+                                "text": "Dark Red"
+                            },
+                            {
+                                "code": "Colors::2",
+                                "text": "Brown"
+                            },
+                            {
+                                "code": "Colors::3",
+                                "text": "Pink"
+                            },
+                            {
+                                "code": "Colors::4",
+                                "text": "Black"
+                            },
+                            {
+                                "code": "Colors::5",
+                                "text": "Orange"
+                            },
+                            {
+                                "code": "Colors::6",
+                                "text": "Other"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0017",
+                            "description": "Color of blood.",
+                            "text": "Color"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/[at0017]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "Colors",
+                        "terminology_id": "Colors",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "time",
+                        "itemPath": "items.0.0.items.4",
+                        "node": {
+                            "code": "",
+                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                            "text": "time"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/time",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Details about menstrual bleeding and associated symptoms within a specified day.",
+                    "text": "Menstrual diary"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.menstruation.v1",
+                "data_type": "Title",
+                "itemName": "Menstrual cycle",
+                "itemPath": "items.0.1",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Description of the cycle",
+                        "itemPath": "items.0.1.items.0",
+                        "itemsList": [
+                            {
+                                "code": "Description::0",
+                                "text": "Mid-Cycle Bleeding (Breakthrough or Intermenstrual Bleeding)"
+                            },
+                            {
+                                "code": "Description::1",
+                                "text": "Irregular Periods (Cycles shorter than 21 days or longer than 35 days)"
+                            },
+                            {
+                                "code": "Description::2",
+                                "text": "Amenorrhea/No Period (Missing for more than 3 months)"
+                            },
+                            {
+                                "code": "Description::3",
+                                "text": "Menorrhagia/Heavy Periods (Bleedings lasting longer than 7 days)"
+                            },
+                            {
+                                "code": "Description::4",
+                                "text": "Other"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0006",
+                            "description": "Narrative description of the menstrual cycle.",
+                            "text": "Description of the cycle"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstruation.v1]/[at0006]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "Description",
+                        "terminology_id": "Description",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "time",
+                        "itemPath": "items.0.1.items.1",
+                        "node": {
+                            "code": "",
+                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                            "text": "time"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstruation.v1]/time",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Details about one single menstrual cycle.",
+                    "text": "Menstrual cycle"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstruation.v1]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.empower_sleep.v0",
+                "data_type": "Title",
+                "itemName": "Sleep",
+                "itemPath": "items.0.2",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_QUANTITY",
+                        "itemName": "Sleep slot duration",
+                        "itemPath": "items.0.2.items.0",
+                        "node": {
+                            "code": "at0005",
+                            "description": "The duration of a sleep event, in hours.",
+                            "text": "Sleep slot duration"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.empower_sleep.v0]/[at0005]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "units": {
+                            "precision": {
+                                "lowerPrecision": 1,
+                                "upperPrecision": 1
+                            },
+                            "range": {
+                                "lower": 0,
+                                "lowerIncluded": "true",
+                                "upper": 24,
+                                "upperIncluded": "true"
+                            },
+                            "unit": "h"
+                        },
+                        "value": {
+                            "unit": null,
+                            "value": null
+                        }
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_ORDINAL",
+                        "itemName": "Perceived Sleep Quality",
+                        "itemPath": "items.0.2.items.1",
+                        "itemsList": [
+                            {
+                                "code": "at0018",
+                                "description": "Very Bad.",
+                                "text": "Very Bad",
+                                "value": 0
+                            },
+                            {
+                                "code": "at0019",
+                                "description": "Fairly Bad.",
+                                "text": "Fairly Bad",
+                                "value": 1
+                            },
+                            {
+                                "code": "at0020",
+                                "description": "Neutral.",
+                                "text": "Neutral",
+                                "value": 2
+                            },
+                            {
+                                "code": "at0021",
+                                "description": "Fairly Good.",
+                                "text": "Fairly Good",
+                                "value": 3
+                            },
+                            {
+                                "code": "at0022",
+                                "description": "Very Good.",
+                                "text": "Very Good",
+                                "value": 4
+                            }
+                        ],
+                        "node": {
+                            "code": "at0017",
+                            "description": "Percetpion of sleep quality by the subject him/herself.",
+                            "text": "Perceived Sleep Quality"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.empower_sleep.v0]/[at0017]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "time",
+                        "itemPath": "items.0.2.items.2",
+                        "node": {
+                            "code": "",
+                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                            "text": "time"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.empower_sleep.v0]/time",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Recording observations regarding sleep.",
+                    "text": "Sleep"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.empower_sleep.v0]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.menses_status.v0",
+                "data_type": "Title",
+                "itemName": "Menses_status",
+                "itemPath": "items.0.3",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Menses Status",
+                        "itemPath": "items.0.3.items.0",
+                        "itemsList": [
+                            {
+                                "code": "at0006",
+                                "text": "Bleeding"
+                            },
+                            {
+                                "code": "at0007",
+                                "text": "Not bleeding"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0005",
+                            "text": "Menses Status"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menses_status.v0]/[at0005]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Menses_status",
+                    "text": "Menses_status"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menses_status.v0]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.other_symptoms.v0",
+                "data_type": "Title",
+                "itemName": "Other_symptoms",
+                "itemPath": "items.0.4",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Mood swings",
+                        "itemPath": "items.0.4.items.0",
+                        "itemsList": [
+                            {
+                                "code": "at0005",
+                                "text": "Less than usual"
+                            },
+                            {
+                                "code": "at0006",
+                                "text": "As usual"
+                            },
+                            {
+                                "code": "at0007",
+                                "text": "More than usual"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0004",
+                            "text": "Mood swings"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.other_symptoms.v0]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Pain level",
+                        "itemPath": "items.0.4.items.1",
+                        "itemsList": [
+                            {
+                                "code": "at0009",
+                                "text": "No pain"
+                            },
+                            {
+                                "code": "at0010",
+                                "text": "Slight pain"
+                            },
+                            {
+                                "code": "at0011",
+                                "text": "Moderate pain"
+                            },
+                            {
+                                "code": "at0012",
+                                "text": "Intense pain"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0008",
+                            "text": "Pain level"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.other_symptoms.v0]/[at0008]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Other_symptoms",
+                    "text": "Other_symptoms"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.other_symptoms.v0]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            }
+        ]
+    ],
+    "node": {
+        "code": "at0000",
+        "description": "Interaction, contact or care event between a subject of care and healthcare provider(s).",
+        "text": "App_data"
+    },
+    "occurrences": {
+        "lowerOccurrences": 1,
+        "upperOccurrences": 1
+    },
+    "path": "[openEHR-EHR-COMPOSITION.encounter.v1]",
+    "rm_type_name": "COMPOSITION",
+    "ruleMandatory": [],
+    "ruleVisibility": [],
+    "templateId": "76ad7f99-84b7-49e9-8a55-e2a26c113d79",
+    "templateName": "App_data",
+    "terminology": "",
+    "themeColor": "default"
+}

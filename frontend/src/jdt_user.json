@@ -1,0 +1,982 @@
+{
+    "Functions": [],
+    "InternalFunctions": [],
+    "Occurrences": {
+        "lowerOccurrences": 1,
+        "upperOccurrences": 1
+    },
+    "Refset": [],
+    "TaskEditable": [
+        "All"
+    ],
+    "TaskInReport": [
+        "All"
+    ],
+    "TaskVisible": [
+        "All"
+    ],
+    "archetypeId": "openEHR-EHR-COMPOSITION.encounter.v1",
+    "category": {
+        "code": 433,
+        "text": "event"
+    },
+    "itemName": "User_data",
+    "itemPath": "",
+    "items": [
+        [
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.age_assertion.v1",
+                "data_type": "Title",
+                "itemName": "Age assertion",
+                "itemPath": "items.0.0",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "data_type": "Title",
+                        "itemName": "Point in time event",
+                        "itemPath": "items.0.0.items.0",
+                        "items": [
+                            {
+                                "Functions": [],
+                                "InternalFunctions": [],
+                                "Occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "Refset": [],
+                                "TaskEditable": [
+                                    "All"
+                                ],
+                                "TaskInReport": [
+                                    "All"
+                                ],
+                                "TaskVisible": [
+                                    "All"
+                                ],
+                                "dataType": "DV_DATE_TIME",
+                                "itemName": "time",
+                                "itemPath": "items.0.0.items.0.items.0",
+                                "node": {
+                                    "code": "",
+                                    "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                                    "text": "time"
+                                },
+                                "occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.age_assertion.v1]/[at0002]/time",
+                                "ruleMandatory": [],
+                                "ruleVisibility": [],
+                                "value": {
+                                    "date": null,
+                                    "time": null
+                                }
+                            }
+                        ],
+                        "node": {
+                            "code": "at0002",
+                            "description": "Default, unspecified point in time event which may be explicitly defined in a template or at run-time.",
+                            "text": "Point in time event"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.age_assertion.v1]/[at0002]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "xsi_type": "C_COMPLEX_OBJECT"
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "A statement about the age of an individual at a point in time.",
+                    "text": "Age assertion"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.age_assertion.v1]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.body_weight.v2",
+                "data_type": "Title",
+                "itemName": "Body weight",
+                "itemPath": "items.0.1",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_QUANTITY",
+                        "itemName": "Weight",
+                        "itemPath": "items.0.1.items.0",
+                        "node": {
+                            "code": "at0004",
+                            "description": "The weight of the individual.",
+                            "text": "Weight"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.body_weight.v2]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "units": [
+                            {
+                                "range": {
+                                    "lower": 0,
+                                    "lowerIncluded": "true",
+                                    "upper": 1000,
+                                    "upperIncluded": "true"
+                                },
+                                "unit": "kg"
+                            },
+                            {
+                                "range": {
+                                    "lower": 0,
+                                    "lowerIncluded": "true",
+                                    "upper": 2000,
+                                    "upperIncluded": "true"
+                                },
+                                "unit": "[lb_av]"
+                            },
+                            {
+                                "range": {
+                                    "lower": 0,
+                                    "lowerIncluded": "true",
+                                    "upper": 1000000,
+                                    "upperIncluded": "true"
+                                },
+                                "unit": "g"
+                            }
+                        ],
+                        "value": {
+                            "unit": null,
+                            "value": null
+                        }
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "time",
+                        "itemPath": "items.0.1.items.1",
+                        "node": {
+                            "code": "",
+                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                            "text": "time"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.body_weight.v2]/time",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Measurement of the body weight of an individual.",
+                    "text": "Body weight"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.body_weight.v2]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.typical_pattern.v0",
+                "data_type": "Title",
+                "itemName": "Typical Cycle Pattern",
+                "itemPath": "items.0.2",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Typical pattern",
+                        "itemPath": "items.0.2.items.0",
+                        "itemsList": [
+                            {
+                                "code": "at0005",
+                                "text": "Regular"
+                            },
+                            {
+                                "code": "at0006",
+                                "text": "Irregular"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0004",
+                            "text": "Typical pattern"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.typical_pattern.v0]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_QUANTITY",
+                        "itemName": "Typical cycle length",
+                        "itemPath": "items.0.2.items.1",
+                        "node": {
+                            "code": "at0007",
+                            "text": "Typical cycle length"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.typical_pattern.v0]/[at0007]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "units": {
+                            "range": {},
+                            "unit": "d"
+                        },
+                        "value": {
+                            "unit": null,
+                            "value": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Typical Pattern",
+                    "text": "Typical Cycle Pattern"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.typical_pattern.v0]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-EVALUATION.contraceptive_summary.v1",
+                "data_type": "Title",
+                "itemName": "Contraceptive use summary",
+                "itemPath": "items.0.3",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_CODED_TEXT",
+                        "itemName": "Overall status",
+                        "itemPath": "items.0.3.items.0",
+                        "itemsList": [
+                            {
+                                "code": "at0003",
+                                "description": "Individual currently uses contraception.",
+                                "text": "Current user"
+                            },
+                            {
+                                "code": "at0005",
+                                "description": "Individual has previously used contraception but is not a current user.",
+                                "text": "Not current user"
+                            },
+                            {
+                                "code": "at0006",
+                                "description": "Individual has never used any type of contraception.",
+                                "text": "Never used"
+                            }
+                        ],
+                        "node": {
+                            "code": "at0089",
+                            "description": "Statement about regular use of any type of contraception.",
+                            "text": "Overall status"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0089]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "terminology": "local",
+                        "terminology_id": "local",
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_TEXT",
+                        "itemName": "Overall description",
+                        "itemPath": "items.0.3.items.1",
+                        "node": {
+                            "code": "at0043",
+                            "description": "Narrative summary about the individuals overall use of contraception.",
+                            "text": "Overall description"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0043]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": null
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": "*"
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "cardinality": {
+                            "interval": {
+                                "lowerOccurrences": 1,
+                                "upperOccurrences": "*"
+                            },
+                            "ordered": false,
+                            "unique": false
+                        },
+                        "data_type": "Title",
+                        "itemName": "Per type",
+                        "itemPath": "items.0.3.items.2",
+                        "items": [
+                            {
+                                "Functions": [],
+                                "InternalFunctions": [],
+                                "Occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "Refset": [],
+                                "TaskEditable": [
+                                    "All"
+                                ],
+                                "TaskInReport": [
+                                    "All"
+                                ],
+                                "TaskVisible": [
+                                    "All"
+                                ],
+                                "dataType": "DV_TEXT",
+                                "itemName": "Type",
+                                "itemPath": "items.0.3.items.2.items.0",
+                                "node": {
+                                    "code": "at0151",
+                                    "description": "The type of contraception used by the individual.",
+                                    "text": "Type"
+                                },
+                                "occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]/[at0151]",
+                                "ruleMandatory": [],
+                                "ruleVisibility": [],
+                                "value": null
+                            },
+                            {
+                                "Functions": [],
+                                "InternalFunctions": [],
+                                "Occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "Refset": [],
+                                "TaskEditable": [
+                                    "All"
+                                ],
+                                "TaskInReport": [
+                                    "All"
+                                ],
+                                "TaskVisible": [
+                                    "All"
+                                ],
+                                "dataType": "DV_CODED_TEXT",
+                                "itemName": "Type",
+                                "itemPath": "items.0.3.items.2.items.1",
+                                "itemsList": [
+                                    {
+                                        "code": "at0155",
+                                        "description": "A combination oral contraceptive pill containing both an oestrogen and progestin.",
+                                        "text": "Combination pill"
+                                    },
+                                    {
+                                        "code": "at0157",
+                                        "description": "Progestogen-only form of oral hormonal contraception.",
+                                        "text": "Progestogen-only pill"
+                                    },
+                                    {
+                                        "code": "at0156",
+                                        "description": "A combination skin patch containing both an oestrogen and progestin.",
+                                        "text": "Combination skin patch"
+                                    },
+                                    {
+                                        "code": "at0158",
+                                        "description": "Progestogen-only injectable of hormonal contraception.",
+                                        "text": "Depot progestogen injection"
+                                    },
+                                    {
+                                        "code": "at0159",
+                                        "description": "Hormonal contraception inserted under the skin.",
+                                        "text": "Hormone implant"
+                                    },
+                                    {
+                                        "code": "at0160",
+                                        "description": "Hormone impregnated ring inserted into the vagina.",
+                                        "text": "Vaginal ring"
+                                    },
+                                    {
+                                        "code": "at0169",
+                                        "description": "Device inserted into the uterus to prevent implantation.",
+                                        "text": "IUD with hormone"
+                                    },
+                                    {
+                                        "code": "at0163",
+                                        "description": "Device inserted into the uterus to prevent implantation.",
+                                        "text": "IUD without hormone"
+                                    },
+                                    {
+                                        "code": "at0161",
+                                        "description": "Procedure intended to permanently prevent pregnancy, usually by tubal ligitation.",
+                                        "text": "Female sterilisation"
+                                    },
+                                    {
+                                        "code": "at0162",
+                                        "description": "Procedure intended to permanently prevent pregnancy, usually by vasectomy.",
+                                        "text": "Male sterilisation"
+                                    },
+                                    {
+                                        "code": "at0154",
+                                        "description": "A shallow, dome shaped barrier placed in the vagina to cover the cervix.",
+                                        "text": "Diaphragm"
+                                    },
+                                    {
+                                        "code": "at0167",
+                                        "description": "Intravaginal cleansing with a liquid solution.",
+                                        "text": "Vaginal douching"
+                                    },
+                                    {
+                                        "code": "at0153",
+                                        "description": "A barrier worn inside the vagina to physically block ejaculated sperm from entering the cervix.",
+                                        "text": "Female condom"
+                                    },
+                                    {
+                                        "code": "at0152",
+                                        "description": "A barrier covering the penis to physically block ejaculated sperm from entering the vagina.",
+                                        "text": "Male condom"
+                                    },
+                                    {
+                                        "code": "at0164",
+                                        "description": "Withdrawing the penis from the vagina and away from a woman's external genitals before ejaculation.",
+                                        "text": "Withdrawal"
+                                    },
+                                    {
+                                        "code": "at0165",
+                                        "description": "Cyclical use of abstinence or barrier methods during likely fertile periods.",
+                                        "text": "Fertility awareness method"
+                                    },
+                                    {
+                                        "code": "at0166",
+                                        "description": "Avoidance of vaginal intercourse or intimate activities which may result in pregnancy.",
+                                        "text": "Abstinence"
+                                    }
+                                ],
+                                "node": {
+                                    "code": "at0151",
+                                    "description": "The type of contraception used by the individual.",
+                                    "text": "Type"
+                                },
+                                "occurrences": {
+                                    "lowerOccurrences": 1,
+                                    "upperOccurrences": 1
+                                },
+                                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]/[at0151]",
+                                "ruleMandatory": [],
+                                "ruleVisibility": [],
+                                "terminology": "local",
+                                "terminology_id": "local",
+                                "value": null
+                            }
+                        ],
+                        "node": {
+                            "code": "at0029",
+                            "description": "Details about use of a specified type of contraception.",
+                            "text": "Per type"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": "*"
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "xsi_type": "C_COMPLEX_OBJECT"
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 0,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "Last updated",
+                        "itemPath": "items.0.3.items.3",
+                        "node": {
+                            "code": "at0022",
+                            "description": "The date this contraceptive use summary was last updated.",
+                            "text": "Last updated"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 0,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0022]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Summary and persistent information about the use of methods to prevent pregnancy.",
+                    "text": "Contraceptive use summary"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-OBSERVATION.height.v2",
+                "data_type": "Title",
+                "itemName": "Height/Length",
+                "itemPath": "items.0.4",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_QUANTITY",
+                        "itemName": "Height/Length",
+                        "itemPath": "items.0.4.items.0",
+                        "node": {
+                            "code": "at0004",
+                            "description": "The length of the body from crown of head to sole of foot.",
+                            "text": "Height/Length"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.height.v2]/[at0004]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "units": [
+                            {
+                                "range": {
+                                    "lower": 0,
+                                    "lowerIncluded": "true",
+                                    "upper": 1000,
+                                    "upperIncluded": "true"
+                                },
+                                "unit": "cm"
+                            },
+                            {
+                                "range": {
+                                    "lower": 0,
+                                    "lowerIncluded": "true",
+                                    "upper": 250,
+                                    "upperIncluded": "true"
+                                },
+                                "unit": "[in_i]"
+                            }
+                        ],
+                        "value": {
+                            "unit": null,
+                            "value": null
+                        }
+                    },
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE_TIME",
+                        "itemName": "time",
+                        "itemPath": "items.0.4.items.1",
+                        "node": {
+                            "code": "",
+                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
+                            "text": "time"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.height.v2]/time",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": {
+                            "date": null,
+                            "time": null
+                        }
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Height, or body length, is measured from crown of head to sole of foot.",
+                    "text": "Height/Length"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.height.v2]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            },
+            {
+                "Functions": [],
+                "InternalFunctions": [],
+                "Occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "Refset": [],
+                "TaskEditable": [
+                    "All"
+                ],
+                "TaskInReport": [
+                    "All"
+                ],
+                "TaskVisible": [
+                    "All"
+                ],
+                "archetype_id": "openEHR-EHR-EVALUATION.last_menstrual_period.v1",
+                "data_type": "Title",
+                "itemName": "Last menstrual period",
+                "itemPath": "items.0.5",
+                "items": [
+                    {
+                        "Functions": [],
+                        "InternalFunctions": [],
+                        "Occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "Refset": [],
+                        "TaskEditable": [
+                            "All"
+                        ],
+                        "TaskInReport": [
+                            "All"
+                        ],
+                        "TaskVisible": [
+                            "All"
+                        ],
+                        "dataType": "DV_DATE",
+                        "itemName": "Date of onset (LMP)",
+                        "itemPath": "items.0.5.items.0",
+                        "node": {
+                            "code": "at0002",
+                            "description": "Date of onset of menstrual bleeding.",
+                            "text": "Date of onset (LMP)"
+                        },
+                        "occurrences": {
+                            "lowerOccurrences": 1,
+                            "upperOccurrences": 1
+                        },
+                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.last_menstrual_period.v1]/[at0002]",
+                        "ruleMandatory": [],
+                        "ruleVisibility": [],
+                        "value": null
+                    }
+                ],
+                "node": {
+                    "code": "at0000",
+                    "description": "Identification of the first day of the most recent menstrual cycle for the individual.",
+                    "text": "Last menstrual period"
+                },
+                "occurrences": {
+                    "lowerOccurrences": 0,
+                    "upperOccurrences": 1
+                },
+                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.last_menstrual_period.v1]",
+                "ruleMandatory": [],
+                "ruleVisibility": [],
+                "xsi_type": "C_ARCHETYPE_ROOT"
+            }
+        ]
+    ],
+    "node": {
+        "code": "at0000",
+        "description": "Interaction, contact or care event between a subject of care and healthcare provider(s).",
+        "text": "User_data"
+    },
+    "occurrences": {
+        "lowerOccurrences": 1,
+        "upperOccurrences": 1
+    },
+    "path": "[openEHR-EHR-COMPOSITION.encounter.v1]",
+    "rm_type_name": "COMPOSITION",
+    "ruleMandatory": [],
+    "ruleVisibility": [],
+    "templateId": "b9e7205b-5b1c-402d-93dc-8841c5f3561f",
+    "templateName": "User_data",
+    "terminology": "",
+    "themeColor": "default"
+}
