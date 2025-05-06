@@ -10,6 +10,7 @@
     "protected-aidaforms": "file:protected-aidaforms-1.7.2.tgz",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.5.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },

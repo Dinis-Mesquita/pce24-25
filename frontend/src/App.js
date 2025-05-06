@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import UserInfoForm from "./pages/userinfo";
+import CycleEntryForm from "./pages/entryforms";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <nav style={{ padding: 20 }}>
+                <Link to="/user-info" style={{ marginRight: 10 }}>📝 Info Inicial</Link>
+                <Link to="/cycle-entry">📅 Novo Ciclo</Link>
+            </nav>
+
+            <Routes>
+                <Route path="/user-info" element={<UserInfoForm />} />
+                <Route path="/cycle-entry" element={<CycleEntryForm />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

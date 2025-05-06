@@ -8,18 +8,37 @@ require('dotenv').config(); //Carregar variáveis de ambiente do arquivo .env pa
 const express = require('express'); //Importar o Express (framework para criar servidores web e APIs)
 const { Pool } = require('pg'); //Importar o pg (cliente PostgreSQL para Node.js)
 const axios = require('axios'); // Importar Axios (cliente HTTP para requisições externas)
-
-
 const cors = require('cors'); // Importar o CORS (permite requisições entre diferentes domínios)
 const { body, validationResult } = require('express-validator'); // Importar Express Validator (validação e sanitização de dados)
 const bcrypt = require("bcrypt"); //encripta password
 
+
+
+const { v4: uuidv4 } = require("uuid"); //atribui ids para as keys e assim
+
+
+
 const app = express(); // framework para Node.js usado para criar servidores web e APIs
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
+
+app.use(
+    cors({
+        origin: "http://localhost:3000", // ou 5173 se usares Vite
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type"],
+    })
+);
+app.use(express.json());
+
 
 // Configuração do PostgreSQL
 const pool = new Pool({
-   connectionString: process.env.DATABASE_URL,
+    user: "nextgen_user",
+    host: "localhost",
+    database: "pce_forms",
+    password: "nextgen_password",
+    port: 5432,
 });
 
 // Middleware para permitir JSON e formulários
@@ -134,20 +153,48 @@ app.post("/api/login", async (req, res) => {
 
 // Route to receive menstrual cycle data from forms // Perguntas iniciais
 app.post("/api/perguntas_iniciais", async (req, res) => {
-    const { id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude } = req.body; //meter as variaveis 
+    const {
+        id_user,
+        dt_nascimento,
+        peso,
+        altura,
+        cycle_length,
+        typical_cycle,
+        duration,
+        contracetivos,
+        problemas_saude
+    } = req.body; // meter as variaveis
 
-    if (!id_user || !dt_nascimento || !peso || !altura || !cycle_length || !typical_cycle || !duration || !contracetivos || !problemas_saude) {
-) {
-        return res.status(400).json({ error: "Todos os campos sao obrigatorios!" }); //campos obrigatorios
+    if (
+        !id_user ||
+        !dt_nascimento ||
+        !peso ||
+        !altura ||
+        !cycle_length ||
+        !typical_cycle ||
+        !duration ||
+        !contracetivos ||
+        !problemas_saude
+    ) {
+        return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
     }
 
-    try { //inserir na bd
+    try {
         const client = await pool.connect();
         await client.query(
             `INSERT INTO menstrual_cycles (id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude) 
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;`,
-            [id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude]
-
+            [
+                id_user,
+                dt_nascimento,
+                peso,
+                altura,
+                cycle_length,
+                typical_cycle,
+                duration,
+                contracetivos,
+                problemas_saude
+            ]
         );
         client.release();
         res.json({ message: "Dados armazenados com sucesso!" });
@@ -155,15 +202,4 @@ app.post("/api/perguntas_iniciais", async (req, res) => {
         console.error("Erro na db:", error);
         res.status(500).json({ error: "Erro ao processar os dados" });
     }
-});
-
-
-//Buscar historico do utilizador
-//get
-
-
-
-// Iniciar o servidor com nodemon (o servidor reinicia automaticamente ao fazer alterações)
-app.listen(port, () => {
-    console.log(`Servidor a correr em http://localhost:${port}`);
 });
