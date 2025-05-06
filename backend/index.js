@@ -23,9 +23,12 @@ const pool = new Pool({
 });
 
 // Middleware para permitir JSON e formulários
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: true }));
 // da parse do json
+
+app.use(cors());
+app.use(express.json());
 
 
 app.post("/api/compositions", async (req, res) => {
@@ -125,7 +128,7 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
-
+*/
 
 
 
@@ -133,7 +136,8 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/perguntas_iniciais", async (req, res) => {
     const { id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude } = req.body; //meter as variaveis 
 
-    if (!id_user || !id_user || !dt_nascimento || !peso || !altura || !cycle_length || !typical_cycle || !duration || !contracetivos || !problemas_saude) {
+    if (!id_user || !dt_nascimento || !peso || !altura || !cycle_length || !typical_cycle || !duration || !contracetivos || !problemas_saude) {
+) {
         return res.status(400).json({ error: "Todos os campos sao obrigatorios!" }); //campos obrigatorios
     }
 
@@ -142,7 +146,7 @@ app.post("/api/perguntas_iniciais", async (req, res) => {
         await client.query(
             `INSERT INTO menstrual_cycles (id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude) 
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;`,
-            [user_id, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude]
+            [id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude]
 
         );
         client.release();
@@ -152,10 +156,12 @@ app.post("/api/perguntas_iniciais", async (req, res) => {
         res.status(500).json({ error: "Erro ao processar os dados" });
     }
 });
-*/
+
 
 //Buscar historico do utilizador
 //get
+
+
 
 // Iniciar o servidor com nodemon (o servidor reinicia automaticamente ao fazer alterações)
 app.listen(port, () => {
