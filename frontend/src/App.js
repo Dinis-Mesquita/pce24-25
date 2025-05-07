@@ -1,23 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-import UserInfoForm from "./pages/userinfo";
 import CycleEntryForm from "./pages/entryforms";
+import UserInfoForm from "./pages/userinfo";
 
-function App() {
-    return (
-        <Router>
-            <nav style={{ padding: 20 }}>
-                <Link to="/user-info" style={{ marginRight: 10 }}>📝 Info Inicial</Link>
-                <Link to="/cycle-entry">📅 Novo Ciclo</Link>
-            </nav>
+const HomePage = () => (
+    <div style={{ textAlign: "center", padding: "60px 20px" ,background: "#ffe6f0"}}>
+        <h1 style={{ fontSize: "2em", color: "#d6336c" }}>🌸 Bem-vinda ao Ciclo Tracker!</h1>
+        <p style={{ marginTop: 10 }}>Acompanhe seu ciclo mesntrual de forma simples!</p>
+        <div style={{ marginTop: 30 }}>
+            <Link to="/new-cycle" style={linkStyle}>➕ Novo Ciclo</Link>
+        </div>
+    </div>
+);
 
-            <Routes>
-                <Route path="/user-info" element={<UserInfoForm />} />
-                <Route path="/cycle-entry" element={<CycleEntryForm />} />
-            </Routes>
-        </Router>
-    );
-}
+const linkStyle = {
+    display: "inline-block",
+    margin: "10px",
+    padding: "12px 24px",
+    backgroundColor: "#ff6f91",
+    color: "#fff",
+    borderRadius: "8px",
+    textDecoration: "none",
+    fontWeight: "bold",
+};
+
+const App = () => (
+    <Router>
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/new-cycle" element={<CycleEntryForm />} />
+            <Route path="/user-info" element={<UserInfoForm />} />
+        </Routes>
+    </Router>
+);
 
 export default App;
