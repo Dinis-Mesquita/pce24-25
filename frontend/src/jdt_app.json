@@ -114,40 +114,7 @@
                         "terminology_id": "local",
                         "value": null
                     },
-                    {
-                        "Functions": [],
-                        "InternalFunctions": [],
-                        "Occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "Refset": [],
-                        "TaskEditable": [
-                            "All"
-                        ],
-                        "TaskInReport": [
-                            "All"
-                        ],
-                        "TaskVisible": [
-                            "All"
-                        ],
-                        "dataType": "DV_TEXT",
-                        "itemName": "Flow",
-                        "itemPath": "items.0.0.items.1",
-                        "node": {
-                            "code": "at0004",
-                            "description": "Semi-quantitative estimation of menstrual flow per day.",
-                            "text": "Flow"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstrual_diary.v1]/[at0004]",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": null
-                    },
+
                     {
                         "Functions": [],
                         "InternalFunctions": [],
@@ -384,7 +351,7 @@
                             "text": "Description of the cycle"
                         },
                         "occurrences": {
-                            "lowerOccurrences": 1,
+                            "lowerOccurrences": 0,
                             "upperOccurrences": 1
                         },
                         "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstruation.v1]/[at0006]",
@@ -410,26 +377,7 @@
                         ],
                         "TaskVisible": [
                             "All"
-                        ],
-                        "dataType": "DV_DATE_TIME",
-                        "itemName": "time",
-                        "itemPath": "items.0.1.items.1",
-                        "node": {
-                            "code": "",
-                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
-                            "text": "time"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.menstruation.v1]/time",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": {
-                            "date": null,
-                            "time": null
-                        }
+                        ]
                     }
                 ],
                 "node": {
@@ -600,26 +548,7 @@
                         ],
                         "TaskVisible": [
                             "All"
-                        ],
-                        "dataType": "DV_DATE_TIME",
-                        "itemName": "time",
-                        "itemPath": "items.0.2.items.2",
-                        "node": {
-                            "code": "",
-                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
-                            "text": "time"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.empower_sleep.v0]/time",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": {
-                            "date": null,
-                            "time": null
-                        }
+                        ]
                     }
                 ],
                 "node": {

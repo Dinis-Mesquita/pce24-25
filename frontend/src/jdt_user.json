@@ -32,15 +32,9 @@
                     "upperOccurrences": 1
                 },
                 "Refset": [],
-                "TaskEditable": [
-                    "All"
-                ],
-                "TaskInReport": [
-                    "All"
-                ],
-                "TaskVisible": [
-                    "All"
-                ],
+                "TaskEditable": ["All"],
+                "TaskInReport": ["All"],
+                "TaskVisible": ["All"],
                 "archetype_id": "openEHR-EHR-OBSERVATION.age_assertion.v1",
                 "data_type": "Title",
                 "itemName": "Age assertion",
@@ -54,61 +48,16 @@
                             "upperOccurrences": 1
                         },
                         "Refset": [],
-                        "TaskEditable": [
-                            "All"
-                        ],
-                        "TaskInReport": [
-                            "All"
-                        ],
-                        "TaskVisible": [
-                            "All"
-                        ],
-                        "data_type": "Title",
-                        "itemName": "Point in time event",
+                        "TaskEditable": ["All"],
+                        "TaskInReport": ["All"],
+                        "TaskVisible": ["All"],
+                        "dataType": "DV_DATE",
+                        "itemName": "Date of age assertion",
                         "itemPath": "items.0.0.items.0",
-                        "items": [
-                            {
-                                "Functions": [],
-                                "InternalFunctions": [],
-                                "Occurrences": {
-                                    "lowerOccurrences": 1,
-                                    "upperOccurrences": 1
-                                },
-                                "Refset": [],
-                                "TaskEditable": [
-                                    "All"
-                                ],
-                                "TaskInReport": [
-                                    "All"
-                                ],
-                                "TaskVisible": [
-                                    "All"
-                                ],
-                                "dataType": "DV_DATE_TIME",
-                                "itemName": "time",
-                                "itemPath": "items.0.0.items.0.items.0",
-                                "node": {
-                                    "code": "",
-                                    "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
-                                    "text": "time"
-                                },
-                                "occurrences": {
-                                    "lowerOccurrences": 1,
-                                    "upperOccurrences": 1
-                                },
-                                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.age_assertion.v1]/[at0002]/time",
-                                "ruleMandatory": [],
-                                "ruleVisibility": [],
-                                "value": {
-                                    "date": null,
-                                    "time": null
-                                }
-                            }
-                        ],
                         "node": {
                             "code": "at0002",
-                            "description": "Default, unspecified point in time event which may be explicitly defined in a template or at run-time.",
-                            "text": "Point in time event"
+                            "description": "Date of birth for age assertion",
+                            "text": "Date of birth"
                         },
                         "occurrences": {
                             "lowerOccurrences": 1,
@@ -117,7 +66,7 @@
                         "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.age_assertion.v1]/[at0002]",
                         "ruleMandatory": [],
                         "ruleVisibility": [],
-                        "xsi_type": "C_COMPLEX_OBJECT"
+                        "value": null
                     }
                 ],
                 "node": {
@@ -133,7 +82,8 @@
                 "ruleMandatory": [],
                 "ruleVisibility": [],
                 "xsi_type": "C_ARCHETYPE_ROOT"
-            },
+            }
+        ,
             {
                 "Functions": [],
                 "InternalFunctions": [],
@@ -452,86 +402,11 @@
                         "TaskVisible": [
                             "All"
                         ],
-                        "dataType": "DV_TEXT",
-                        "itemName": "Overall description",
-                        "itemPath": "items.0.3.items.1",
-                        "node": {
-                            "code": "at0043",
-                            "description": "Narrative summary about the individuals overall use of contraception.",
-                            "text": "Overall description"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0043]",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": null
-                    },
-                    {
-                        "Functions": [],
-                        "InternalFunctions": [],
-                        "Occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": "*"
-                        },
-                        "Refset": [],
-                        "TaskEditable": [
-                            "All"
-                        ],
-                        "TaskInReport": [
-                            "All"
-                        ],
-                        "TaskVisible": [
-                            "All"
-                        ],
-                        "cardinality": {
-                            "interval": {
-                                "lowerOccurrences": 1,
-                                "upperOccurrences": "*"
-                            },
-                            "ordered": false,
-                            "unique": false
-                        },
                         "data_type": "Title",
                         "itemName": "Per type",
                         "itemPath": "items.0.3.items.2",
                         "items": [
-                            {
-                                "Functions": [],
-                                "InternalFunctions": [],
-                                "Occurrences": {
-                                    "lowerOccurrences": 1,
-                                    "upperOccurrences": 1
-                                },
-                                "Refset": [],
-                                "TaskEditable": [
-                                    "All"
-                                ],
-                                "TaskInReport": [
-                                    "All"
-                                ],
-                                "TaskVisible": [
-                                    "All"
-                                ],
-                                "dataType": "DV_TEXT",
-                                "itemName": "Type",
-                                "itemPath": "items.0.3.items.2.items.0",
-                                "node": {
-                                    "code": "at0151",
-                                    "description": "The type of contraception used by the individual.",
-                                    "text": "Type"
-                                },
-                                "occurrences": {
-                                    "lowerOccurrences": 1,
-                                    "upperOccurrences": 1
-                                },
-                                "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]/[at0151]",
-                                "ruleMandatory": [],
-                                "ruleVisibility": [],
-                                "value": null
-                            },
+
                             {
                                 "Functions": [],
                                 "InternalFunctions": [],
@@ -662,7 +537,7 @@
                             "text": "Per type"
                         },
                         "occurrences": {
-                            "lowerOccurrences": 1,
+                            "lowerOccurrences": 0,
                             "upperOccurrences": "*"
                         },
                         "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]",
@@ -799,43 +674,6 @@
                         "value": {
                             "unit": null,
                             "value": null
-                        }
-                    },
-                    {
-                        "Functions": [],
-                        "InternalFunctions": [],
-                        "Occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "Refset": [],
-                        "TaskEditable": [
-                            "All"
-                        ],
-                        "TaskInReport": [
-                            "All"
-                        ],
-                        "TaskVisible": [
-                            "All"
-                        ],
-                        "dataType": "DV_DATE_TIME",
-                        "itemName": "time",
-                        "itemPath": "items.0.4.items.1",
-                        "node": {
-                            "code": "",
-                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
-                            "text": "time"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.height.v2]/time",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": {
-                            "date": null,
-                            "time": null
                         }
                     }
                 ],
