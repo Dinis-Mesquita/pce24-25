@@ -9,7 +9,7 @@ const HomePage = () => (
         <h1 style={{ fontSize: "2em", color: "#d6336c" }}>🌸 Bem-vinda ao Ciclo Tracker!</h1>
         <p style={{ marginTop: 10 }}>Acompanhe seu ciclo mesntrual de forma simples!</p>
         <div style={{ marginTop: 30 }}>
-            <Link to="/new-cycle" style={linkStyle}>➕ Novo Ciclo</Link>
+            <Link to="/user/new-cycle" style={linkStyle}>➕ Novo Ciclo</Link>
         </div>
     </div>
 );
@@ -28,10 +28,10 @@ const linkStyle = {
 const App = () => (
     <Router>
         <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/new-cycle" element={<CycleEntryForm />} />
-            <Route path="/user-info" element={<UserInfoForm />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/user" element={<HomePage />} />
+            <Route path="/user/new-cycle" element={<CycleEntryForm />} />
+            <Route path="/user/user-info" element={<UserInfoForm />} />
+            <Route path="/" element={<LoginPage />} />
 
         </Routes>
     </Router>

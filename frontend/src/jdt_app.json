@@ -359,19 +359,19 @@
                         "itemsList": [
                             {
                                 "code": "Description::0",
-                                "text": "Mid-Cycle Bleeding (Breakthrough or Intermenstrual Bleeding)"
+                                "text": "Mid-Cycle Bleeding"
                             },
                             {
                                 "code": "Description::1",
-                                "text": "Irregular Periods (Cycles shorter than 21 days or longer than 35 days)"
+                                "text": "Irregular Periods"
                             },
                             {
                                 "code": "Description::2",
-                                "text": "Amenorrhea/No Period (Missing for more than 3 months)"
+                                "text": "Amenorrhea/No Period"
                             },
                             {
                                 "code": "Description::3",
-                                "text": "Menorrhagia/Heavy Periods (Bleedings lasting longer than 7 days)"
+                                "text": "Menorrhagia/Heavy Periods"
                             },
                             {
                                 "code": "Description::4",

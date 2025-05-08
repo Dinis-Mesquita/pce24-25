@@ -20,7 +20,7 @@
         "code": 433,
         "text": "event"
     },
-    "itemName": "User_data",
+    "itemName": "Dados de utilizador",
     "itemPath": "",
     "items": [
         [
@@ -221,44 +221,8 @@
                             "unit": null,
                             "value": null
                         }
-                    },
-                    {
-                        "Functions": [],
-                        "InternalFunctions": [],
-                        "Occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "Refset": [],
-                        "TaskEditable": [
-                            "All"
-                        ],
-                        "TaskInReport": [
-                            "All"
-                        ],
-                        "TaskVisible": [
-                            "All"
-                        ],
-                        "dataType": "DV_DATE_TIME",
-                        "itemName": "time",
-                        "itemPath": "items.0.1.items.1",
-                        "node": {
-                            "code": "",
-                            "description": "Time origin of this event history. The first event is not necessarily at the origin point.",
-                            "text": "time"
-                        },
-                        "occurrences": {
-                            "lowerOccurrences": 1,
-                            "upperOccurrences": 1
-                        },
-                        "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-OBSERVATION.body_weight.v2]/time",
-                        "ruleMandatory": [],
-                        "ruleVisibility": [],
-                        "value": {
-                            "date": null,
-                            "time": null
-                        }
                     }
+
                 ],
                 "node": {
                     "code": "at0000",
