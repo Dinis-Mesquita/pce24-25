@@ -4,18 +4,49 @@ import jdt from "../jdt_user.json";
 import formDesign from "../style_user.json";
 
 const saveComposition = async (values) => {
+    console.log("🔍 FORM VALUES RECEIVED:", values);
+
     try {
-        const response = await fetch("http://localhost:5001/api/compositions", {
+        let valores = values;
+
+        if (typeof valores === "string") {
+            valores = JSON.parse(valores);
+        }
+
+        // 1. Extract all values with proper null checks
+        const backendData = {
+            id_user: 2,
+            data_nascimento: valores["items.0.0.items.0.value"],
+            peso: valores["items.0.1.items.0.value.value"],
+            altura: valores["items.0.4.items.0.value.value"],
+            cycle_length: valores["items.0.2.items.1.value.value"],
+            typical_cycle: valores["items.0.2.items.0.value"]?.text,
+            last_menstrual_period: valores["items.0.5.items.0.value"],
+            contracetivos: valores["items.0.3.items.0.value"]?.text,
+            contraceptive_type:
+                valores["items.0.3.items.1.value"]?.[0]?.values?.["items.0.3.items.1.items.0.value"]?.text || null, // ✅ Type
+        };
+
+        console.log("📦 Data being sent to backend:", backendData);
+
+        const response = await fetch("http://localhost:3001/api/dados_inicial", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ composition: values }),
+            body: JSON.stringify(backendData),
         });
 
-        if (!response.ok) throw new Error("Erro ao guardar");
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Erro ao guardar");
+        }
+
         const result = await response.json();
-        console.log("Guardado com sucesso:", result);
+        console.log("✅ Dados guardados com sucesso:", result);
+        return result;
+
     } catch (err) {
-        console.error("Erro ao submeter composição:", err);
+        console.error("❌ Erro ao submeter composição:", err);
+        throw err;
     }
 };
 
@@ -54,6 +85,5 @@ const UserInfoForm = () => {
         </div>
     );
 };
-
 
 export default UserInfoForm;

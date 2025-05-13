@@ -19,8 +19,24 @@ const { v4: uuidv4 } = require("uuid"); //atribui ids para as keys e assim
 
 
 const app = express(); // framework para Node.js usado para criar servidores web e APIs
-const port = process.env.PORT || 3001;
+const port = 3001;
 
+
+// Middleware para permitir JSON e formulários
+app.use(express.json({
+    type: ['application/json', 'application/json-patch+json'] // Add other types if needed
+}));
+
+app.use((req, res, next) => {
+    console.log('Request Headers:', req.headers);
+    console.log('Raw Body:', req.body);
+    next();
+});
+
+app.use(express.urlencoded({ extended: true }));
+// da parse do json
+
+//app.use(cors());
 
 app.use(
     cors({
@@ -29,27 +45,22 @@ app.use(
         allowedHeaders: ["Content-Type"],
     })
 );
-app.use(express.json());
+
 
 
 // Configuração do PostgreSQL
 const pool = new Pool({
     user: "nextgen_user",
     host: "localhost",
-    database: "pce_forms",
+    database: "proj_final",
     password: "nextgen_password",
     port: 5432,
 });
 
-// Middleware para permitir JSON e formulários
-//app.use(express.json());
-//app.use(express.urlencoded({ extended: true }));
-// da parse do json
-
-app.use(cors());
-app.use(express.json());
 
 
+
+/*
 app.post("/api/compositions", async (req, res) => {
     let { composition } = req.body;
     if (typeof composition === "string") {
@@ -70,7 +81,8 @@ app.post("/api/compositions", async (req, res) => {
     }
 });
 
-/*
+
+
 // Route to register a new user
 app.post("/api/register", async (req, res) => {
     const { name, email, password } = req.body;
@@ -95,7 +107,7 @@ app.post("/api/register", async (req, res) => {
 
         // Insert the new user
         const result = await client.query(
-            `INSERT INTO user (nome, email, password) 
+            `INSERT INTO user (nome, email, password)
              VALUES ($1, $2, $3) RETURNING user_id;`,
             [name, email, hashedPassword]
         );
@@ -152,54 +164,67 @@ app.post("/api/login", async (req, res) => {
 
 
 // Route to receive menstrual cycle data from forms // Perguntas iniciais
-app.post("/api/perguntas_iniciais", async (req, res) => {
+app.post("/api/dados_inicial", async (req, res) => {
+
+    console.log("Received data:", req.body);
+
     const {
         id_user,
-        dt_nascimento,
+        data_nascimento,
         peso,
         altura,
         cycle_length,
         typical_cycle,
-        duration,
+        last_menstrual_period,
         contracetivos,
-        problemas_saude
-    } = req.body; // meter as variaveis
+        contraceptive_type
+    } = req.body;
 
-    if (
-        !id_user ||
-        !dt_nascimento ||
-        !peso ||
-        !altura ||
-        !cycle_length ||
-        !typical_cycle ||
-        !duration ||
-        !contracetivos ||
-        !problemas_saude
-    ) {
-        return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
-    }
+    const client = await pool.connect();
 
     try {
-        const client = await pool.connect();
-        await client.query(
-            `INSERT INTO menstrual_cycles (id_user, dt_nascimento, peso, altura, cycle_length, typical_cycle, duration, contracetivos, problemas_saude) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;`,
+        const result = await client.query(
+            `INSERT INTO "User_data" (
+        id_user,
+        data_nascimento,
+        peso,
+        altura,
+        cycle_pattern_lenght,
+        last_menstrual_period,
+        cycle_patern,
+        contraceptive_status,
+        contraceptive_type
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      RETURNING *;`,
             [
                 id_user,
-                dt_nascimento,
+                data_nascimento,
                 peso,
                 altura,
                 cycle_length,
+                last_menstrual_period,
                 typical_cycle,
-                duration,
                 contracetivos,
-                problemas_saude
+                contraceptive_type || null
             ]
         );
-        client.release();
-        res.json({ message: "Dados armazenados com sucesso!" });
+
+        res.json({
+            message: "Dados armazenados com sucesso!",
+            data: result.rows[0]
+        });
     } catch (error) {
         console.error("Erro na db:", error);
-        res.status(500).json({ error: "Erro ao processar os dados" });
+        res.status(500).json({ error: "Erro ao processar os dados", details: error.message });
+    } finally {
+        client.release();
     }
+});
+
+app.post('/api/test', (req, res) => {
+    console.log("Received body:", req.body);
+    res.json({ received: req.body });
+});
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
 });
