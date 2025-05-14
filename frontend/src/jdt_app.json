@@ -207,10 +207,6 @@
                             {
                                 "code": "Colors::5",
                                 "text": "Orange"
-                            },
-                            {
-                                "code": "Colors::6",
-                                "text": "Other"
                             }
                         ],
                         "node": {
@@ -339,10 +335,6 @@
                             {
                                 "code": "Description::3",
                                 "text": "Menorrhagia/Heavy Periods"
-                            },
-                            {
-                                "code": "Description::4",
-                                "text": "Other"
                             }
                         ],
                         "node": {

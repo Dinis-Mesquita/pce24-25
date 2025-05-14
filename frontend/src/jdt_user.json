@@ -520,7 +520,7 @@
                                     "text": "Type"
                                 },
                                 "occurrences": {
-                                    "lowerOccurrences": 1,
+                                    "lowerOccurrences": 0,
                                     "upperOccurrences": 1
                                 },
                                 "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]/[at0151]",
@@ -538,7 +538,7 @@
                         },
                         "occurrences": {
                             "lowerOccurrences": 0,
-                            "upperOccurrences": "*"
+                            "upperOccurrences": 1
                         },
                         "path": "[openEHR-EHR-COMPOSITION.encounter.v1]/[openEHR-EHR-EVALUATION.contraceptive_summary.v1]/[at0029]",
                         "ruleMandatory": [],

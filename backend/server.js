@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
     cors({
-        origin: "http://localhost:3000", // ou 5173 se usares Vite
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
         allowedHeaders: ["Content-Type"],
     })
@@ -60,28 +60,74 @@ const pool = new Pool({
 
 
 
-/*
-app.post("/api/compositions", async (req, res) => {
-    let { composition } = req.body;
-    if (typeof composition === "string") {
-        composition = JSON.parse(composition);
-    }
+//entrada do diario
+app.post("/api/diario", async (req, res) => {
+    console.log("📥 Received data:", req.body);
 
-    const id = uuidv4();
+    const {
+        id_user,
+        data_entrada,
+        color,
+        blood_clots,
+        flow,
+        menstrual_cycle_des,
+        sleep_duration,
+        sleep_quality,
+        menses_status,
+        mood_swings,
+        pain_level
+    } = req.body;
+
+    const client = await pool.connect();
 
     try {
-        await pool.query(
-            "INSERT INTO public.composition VALUES ($1, $2)",
-            [id, composition]
+        const result = await client.query(
+            `INSERT INTO "menstrual_diary" (
+                id_user,
+                data_entrada,
+                color,
+                blood_clots,
+                flow,
+                menstrual_cycle_desc,
+                sleep_duration,
+                sleep_quality,
+                menses_status,
+                mood_swings,
+                pain_level
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+            RETURNING *;`,
+            [
+                id_user,
+                data_entrada,
+                color,
+                blood_clots,
+                flow,
+                menstrual_cycle_des,
+                sleep_duration,
+                sleep_quality,
+                menses_status,
+                mood_swings,
+                pain_level
+            ]
         );
-        res.status(201).json({ message: "Guardado com sucesso!", id });
-    } catch (err) {
-        console.error("Erro ao guardar:", err);
-        res.status(500).json({ error: "Erro ao guardar a composition" });
+
+        res.json({
+            message: "Dados do diário armazenados com sucesso!",
+            data: result.rows[0],
+        });
+    } catch (error) {
+        console.error("❌ Erro na base de dados:", error);
+        res.status(500).json({
+            error: "Erro ao processar os dados",
+            details: error.message,
+        });
+    } finally {
+        client.release();
     }
 });
 
 
+/*
 
 // Route to register a new user
 app.post("/api/register", async (req, res) => {
@@ -226,5 +272,5 @@ app.post('/api/test', (req, res) => {
     res.json({ received: req.body });
 });
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor a correr em http://localhost:${port}`);
 });
