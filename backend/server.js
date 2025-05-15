@@ -126,6 +126,25 @@ app.post("/api/diario", async (req, res) => {
     }
 });
 
+app.get("/api/diario/:id_user", async (req, res) => {
+    const { id_user } = req.params;
+    const client = await pool.connect();
+
+    try {
+        console.log("🔍 Fetching entries for user ID:", id_user);
+        const result = await client.query(
+            `SELECT * FROM "menstrual_diary" WHERE id_user = $1 ORDER BY data_entrada DESC`,
+            [id_user]
+        );
+        res.json(result.rows);
+    } catch (error) {
+        console.error("Erro ao buscar histórico:", error);
+        res.status(500).json({ error: "Erro ao buscar entradas" });
+    } finally {
+        client.release();
+    }
+});
+
 
 /*
 
