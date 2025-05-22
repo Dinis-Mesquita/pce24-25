@@ -1,4 +1,3 @@
-
 import { jwtDecode } from 'jwt-decode';
 
 export function getUserIdFromToken() {
@@ -12,4 +11,12 @@ export function getUserIdFromToken() {
         console.error("Invalid token");
         return null;
     }
+}
+
+export function removeToken() {
+    localStorage.removeItem("token");
+}
+
+export function hasToken() {
+    return !!localStorage.getItem("token");
 }

@@ -156,8 +156,10 @@ app.post("/api/register", async (req, res) => {
 
     const client = await pool.connect();
     try {
-        // Check if email exists
-        const check = await client.query(`SELECT * FROM "user" WHERE email = $1`, [email]);
+        const check = await client.query(
+            `SELECT * FROM "user" WHERE email = $1`,
+            [email]
+        );
         if (check.rows.length > 0) {
             return res.status(409).json({ message: "Email já registrado." });
         }
@@ -169,7 +171,17 @@ app.post("/api/register", async (req, res) => {
             [email, hashedPassword]
         );
 
-        res.status(201).json({ message: "Usuário registrado com sucesso!", id_user: result.rows[0].id_user });
+        const id_user = result.rows[0].id_user;
+
+        const token = jwt.sign({ id_user, email }, SECRET, {
+            expiresIn: "2h",
+        });
+
+        res.status(201).json({
+            message: "Usuário registrado com sucesso!",
+            id_user,
+            token,
+        });
     } catch (err) {
         console.error("Erro no registro:", err);
         res.status(500).json({ message: "Erro ao registrar usuário." });
@@ -177,6 +189,7 @@ app.post("/api/register", async (req, res) => {
         client.release();
     }
 });
+
 
 // LOGIN
 app.post("/api/login", async (req, res) => {

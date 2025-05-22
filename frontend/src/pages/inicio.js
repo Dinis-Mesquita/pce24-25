@@ -25,15 +25,19 @@ const LoginPage = () => {
                 return;
             }
 
+            // Save token and id_user for both login and register
+            if (data.token) localStorage.setItem("token", data.token);
+            if (data.id_user) localStorage.setItem("id_user", data.id_user);
+
             if (isLogin) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("id_user", data.id_user);
                 navigate("/user");
             } else {
-                alert("Registrado com sucesso! Agora faça login.");
+                // Redirect to initial form page immediately after register
+                navigate("/user/user-info");
             }
         } catch (err) {
             console.error("Erro:", err);
+            alert("Erro de conexão.");
         }
     };
 
@@ -42,10 +46,26 @@ const LoginPage = () => {
             <div style={styles.card}>
                 <h2 style={styles.title}>🌸 <span style={{ fontWeight: "600" }}>Bem-vinda ao Ciclo Tracker!</span></h2>
                 <form>
-                    <input type="email" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} style={styles.input} />
-                    <input type="password" placeholder="Senha" value={password} required onChange={(e) => setPassword(e.target.value)} style={styles.input} />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                        style={styles.input}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Senha"
+                        value={password}
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={styles.input}
+                    />
                     <button type="submit" onClick={(e) => handleSubmit(e, true)} style={styles.button}>Login</button>
-                    <button type="submit" onClick={(e) => handleSubmit(e, false)} style={{ ...styles.button, marginTop: 10 }}>Registrar</button>
+                    <button type="submit" onClick={(e) => handleSubmit(e, false)} style={{ ...styles.button, marginTop: 10 }}>
+                        Registrar
+                    </button>
                 </form>
             </div>
         </div>
