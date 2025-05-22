@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getUserIdFromToken } from "../components/autenticacao";
+
 
 const DiaryHistory = () => {
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
-    const id_user = 2; // Replace with actual logged-in user ID
+    const id_user = getUserIdFromToken();
     const navigate = useNavigate();
 
     useEffect(() => {

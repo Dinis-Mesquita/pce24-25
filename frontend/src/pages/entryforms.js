@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Form } from "protected-aidaforms";
 import jdt from "../jdt_app.json";
 import formDesign from "../style_app.json";
-
+import { getUserIdFromToken } from "../components/autenticacao";
 const CycleEntryForm = () => {
     const navigate = useNavigate();
+    const id_user = getUserIdFromToken();
 
     const saveComposition = async (values) => {
         console.log("🔍 FORM VALUES RECEIVED:", values);
@@ -20,7 +21,7 @@ const CycleEntryForm = () => {
             // 🧠 Extracting data from form (example structure — adjust keys after testing)
             const backendData = {
                 
-                id_user: 2, // Replace with actual dynamic user ID if available
+                id_user: id_user,
                 data_entrada: valores["items.0.0.items.3.value.date"], // data only
                 color: valores["items.0.0.items.2.value"]?.text,
                 blood_clots: valores["items.0.0.items.1.value"]?.text,

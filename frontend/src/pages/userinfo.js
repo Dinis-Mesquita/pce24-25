@@ -3,10 +3,12 @@ import { Form } from "protected-aidaforms";
 import { useNavigate } from "react-router-dom"; // <-- Import useNavigate
 import jdt from "../jdt_user.json";
 import formDesign from "../style_user.json";
+import { getUserIdFromToken } from "../components/autenticacao";
 
 const UserInfoForm = () => {
     const navigate = useNavigate(); // <-- Hook for navigation
 
+    const id_user = getUserIdFromToken();
     const saveComposition = async (values) => {
         console.log("🔍 FORM VALUES RECEIVED:", values);
 
@@ -18,7 +20,7 @@ const UserInfoForm = () => {
             }
 
             const backendData = {
-                id_user: 2,
+                id_user: id_user,
                 data_nascimento: valores["items.0.0.items.0.value"],
                 peso: valores["items.0.1.items.0.value.value"],
                 altura: valores["items.0.4.items.0.value.value"],

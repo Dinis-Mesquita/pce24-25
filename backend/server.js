@@ -1,5 +1,5 @@
 //bibliotecas
-// npm install express pg cors dotenv axios express-validator
+// npm install express pg cors dotenv axios express-validator jsonwebtoken
 // npm install --save-dev nodemon
 
 
@@ -146,86 +146,69 @@ app.get("/api/diario/:id_user", async (req, res) => {
 });
 
 
-/*
 
-// Route to register a new user
+const jwt = require("jsonwebtoken"); // Make sure this is already imported
+const SECRET = "pce"; // You can load this from .env for security
+
+// REGISTER
 app.post("/api/register", async (req, res) => {
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!name || !email || !password) {
-        return res.status(400).json({ error: "Name, email, and password are required" });
-    }
-
+    const client = await pool.connect();
     try {
-        const client = await pool.connect();
-
-        // Check if user already exists
-        const existingUser = await client.query("SELECT * FROM user WHERE email = $1", [email]);
-        if (existingUser.rows.length > 0) {
-            client.release();
-            return res.status(400).json({ error: "Email is already in use" });
+        // Check if email exists
+        const check = await client.query(`SELECT * FROM "user" WHERE email = $1`, [email]);
+        if (check.rows.length > 0) {
+            return res.status(409).json({ message: "Email já registrado." });
         }
 
-        // Hash the password
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Insert the new user
         const result = await client.query(
-            `INSERT INTO user (nome, email, password)
-             VALUES ($1, $2, $3) RETURNING user_id;`,
-            [name, email, hashedPassword]
+            `INSERT INTO "user" (email, password) VALUES ($1, $2) RETURNING id_user`,
+            [email, hashedPassword]
         );
 
+        res.status(201).json({ message: "Usuário registrado com sucesso!", id_user: result.rows[0].id_user });
+    } catch (err) {
+        console.error("Erro no registro:", err);
+        res.status(500).json({ message: "Erro ao registrar usuário." });
+    } finally {
         client.release();
-        res.json({ message: "User registered successfully", user_id: result.rows[0].user_id });
-    } catch (error) {
-        console.error("Database error:", error);
-        res.status(500).json({ error: "Failed to register user" });
     }
 });
 
-
-const jwt = require("jsonwebtoken");
-
+// LOGIN
 app.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-        return res.status(400).json({ error: "Email and password are required" });
-    }
-
+    const client = await pool.connect();
     try {
-        const client = await pool.connect();
+        const result = await client.query(`SELECT * FROM "user" WHERE email = $1`, [email]);
 
-        // Find user by email
-        const userResult = await client.query("SELECT * FROM user WHERE email = $1", [email]);
-        client.release();
-
-        if (userResult.rows.length === 0) {
-            return res.status(401).json({ error: "Invalid email or password" });
+        if (result.rows.length === 0) {
+            return res.status(401).json({ message: "Credenciais inválidas." });
         }
 
-        const user = userResult.rows[0];
+        const user = result.rows[0];
+        const isMatch = await bcrypt.compare(password, user.password);
 
-        // Compare the provided password with the stored hashed password
-        const isMatch = await bcrypt.compare(password, user.password_hash);
         if (!isMatch) {
-            return res.status(401).json({ error: "Invalid email or password" });
+            return res.status(401).json({ message: "Senha incorreta." });
         }
 
-        // Generate a JWT token
-        const token = jwt.sign({ user_id: user.user_id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ id_user: user.id_user, email: user.email }, SECRET, {
+            expiresIn: "2h",
+        });
 
-        res.json({ message: "Login successful", token });
-    } catch (error) {
-        console.error("Database error:", error);
-        res.status(500).json({ error: "Login failed" });
+        res.json({ token, id_user: user.id_user });
+    } catch (err) {
+        console.error("Erro no login:", err);
+        res.status(500).json({ message: "Erro no login." });
+    } finally {
+        client.release();
     }
 });
-
-*/
-
 
 
 // Route to receive menstrual cycle data from forms // Perguntas iniciais

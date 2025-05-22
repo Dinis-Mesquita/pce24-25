@@ -4,10 +4,11 @@ import CycleEntryForm from "./pages/entryforms";
 import UserInfoForm from "./pages/userinfo";
 import LoginPage from "./pages/inicio";
 import DiaryHistory from "./pages/historico";
-import MiniHistory from "./components/minihistorico"; // 🆕 Import Mini version
+import MiniHistory from "./components/minihistorico";
+import { getUserIdFromToken } from "./components/autenticacao";
 
 const HomePage = () => {
-    const id_user = 2; // ⚠️ Replace with logged-in user logic later
+    const id_user = getUserIdFromToken();
 
     return (
         <div style={{ textAlign: "center", padding: "60px 20px", background: "#ffe6f0", minHeight: "100vh" }}>
