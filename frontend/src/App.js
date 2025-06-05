@@ -5,6 +5,7 @@ import UserInfoForm from "./pages/userinfo";
 import LoginPage from "./pages/inicio";
 import DiaryHistory from "./pages/historico";
 import MiniHistory from "./components/minihistorico";
+import PeriodCalendar from "./components/calendario"; // ⬅️ calendar component
 import { getUserIdFromToken, removeToken, hasToken } from "./components/autenticacao";
 
 const HomePage = () => {
@@ -44,10 +45,14 @@ const HomePage = () => {
                         background: '#d6336c'
                     }}
                 >
-                    🚪 Sair
+                    Logout
                 </button>
             </div>
+
             <MiniHistory id_user={id_user} />
+
+            <h2 style={{ marginTop: 50, color: "#d6336c" }}>📅 Seu Calendário do Ciclo</h2>
+            <PeriodCalendar id_user={id_user} />
         </div>
     );
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromToken } from "../components/autenticacao";
 
-
 const DiaryHistory = () => {
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -30,10 +29,101 @@ const DiaryHistory = () => {
         return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
     };
 
+    const exportToFHIR = () => {
+        const fhirBundle = {
+            resourceType: "Bundle",
+            type: "collection",
+            entry: entries.map(entry => ({
+                resource: createObservationResource(entry)
+            }))
+        };
+
+        downloadAsJSON(fhirBundle, `menstrual-history-${new Date().toISOString().split('T')[0]}.json`);
+    };
+
+    const createObservationResource = (entry) => {
+        return {
+            resourceType: "Observation",
+            status: "final",
+            category: [{
+                coding: [{
+                    system: "http://terminology.hl7.org/CodeSystem/observation-category",
+                    code: "survey",
+                    display: "Survey"
+                }]
+            }],
+            code: {
+                coding: [{
+                    system: "http://loinc.org",
+                    code: "49033-4",
+                    display: "Menstrual cycle"
+                }]
+            },
+            subject: {
+                reference: `Patient/${id_user}`
+            },
+            effectiveDateTime: entry.data_entrada,
+            component: [
+                {
+                    code: {
+                        coding: [{
+                            system: "http://loinc.org",
+                            code: "84756-9",
+                            display: "Menstrual flow"
+                        }]
+                    },
+                    valueString: entry.flow
+                },
+                {
+                    code: {
+                        coding: [{
+                            system: "http://loinc.org",
+                            code: "75322-8",
+                            display: "Menstrual symptoms"
+                        }]
+                    },
+                    valueString: entry.menstrual_cycle_desc || "None"
+                },
+                {
+                    code: {
+                        coding: [{
+                            system: "http://loinc.org",
+                            code: "72514-3",
+                            display: "Pain severity"
+                        }]
+                    },
+                    valueString: entry.pain_level
+                },
+                {
+                    code: {
+                        coding: [{
+                            system: "http://loinc.org",
+                            code: "68502-2",
+                            display: "Sleep duration"
+                        }]
+                    },
+                    valueString: `${entry.sleep_duration} hours`
+                }
+            ]
+        };
+    };
+
+    const downloadAsJSON = (data, filename) => {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+
     return (
         <div style={{ background: "#fff0f5", minHeight: "100vh", padding: "60px 20px" }}>
-            {/* Voltar Button */}
-            <div style={{ marginBottom: "30px" }}>
+            {/* Header with Back and Export buttons */}
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "30px" }}>
                 <button
                     onClick={() => navigate("/user")}
                     style={{
@@ -48,6 +138,22 @@ const DiaryHistory = () => {
                     }}
                 >
                     ← Voltar
+                </button>
+
+                <button
+                    onClick={exportToFHIR}
+                    style={{
+                        backgroundColor: "#d6336c",
+                        border: "none",
+                        borderRadius: "8px",
+                        padding: "10px 16px",
+                        color: "white",
+                        fontWeight: "bold",
+                        cursor: "pointer",
+                        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                    }}
+                >
+                    Exportar FHIR/LOINC
                 </button>
             </div>
 
