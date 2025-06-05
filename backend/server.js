@@ -1,7 +1,8 @@
 //bibliotecas
 // npm install express pg cors dotenv axios express-validator jsonwebtoken
 // npm install --save-dev nodemon
-
+//no frontend: npm install @fullcalendar/react@5.11.3 @fullcalendar/daygrid@5.11.3 @fullcalendar/core@5.11.3
+// npm install react-tooltip-lite
 
 require('dotenv').config(); //Carregar variáveis de ambiente do arquivo .env para process.env
 
@@ -281,6 +282,127 @@ app.post("/api/dados_inicial", async (req, res) => {
         client.release();
     }
 });
+app.get("/api/calendar/:id_user", async (req, res) => {
+    const { id_user } = req.params;
+    const client = await pool.connect();
+
+    const formatDate = (date) =>
+        new Date(date).toLocaleDateString('sv-SE'); // formato YYYY-MM-DD, respeita timezone
+
+    try {
+        const result = await client.query(`
+            SELECT data_entrada
+            FROM menstrual_diary
+            WHERE id_user = $1 AND menses_status = 'Bleeding'
+            ORDER BY data_entrada ASC
+        `, [id_user]);
+
+        const periodDates = result.rows.map(r => formatDate(r.data_entrada));
+
+        const cycleStats = await client.query(`
+            SELECT
+                AVG(ciclo) AS media
+            FROM (
+                     SELECT
+                         data_entrada - LAG(data_entrada) OVER (ORDER BY data_entrada) AS ciclo
+                     FROM menstrual_diary
+                     WHERE id_user = $1 AND menses_status = 'Bleeding'
+                 ) sub
+            WHERE ciclo IS NOT NULL
+        `, [id_user]);
+
+        const averageCycle = parseInt(cycleStats.rows[0].media) || 28;
+
+        const lastBleedingDateStr = periodDates[periodDates.length - 1];
+        const lastBleedingDate = new Date(lastBleedingDateStr);
+
+        const predictedPeriod = new Date(lastBleedingDate);
+        predictedPeriod.setDate(predictedPeriod.getDate() + averageCycle);
+        const nextPredictedPeriod = formatDate(predictedPeriod);
+
+        const ovulation = new Date(predictedPeriod);
+        ovulation.setDate(ovulation.getDate() - 14);
+        const ovulationDate = formatDate(ovulation);
+
+        const fertileStart = new Date(ovulation);
+        fertileStart.setDate(fertileStart.getDate() - 4);
+        const fertileEnd = new Date(ovulation);
+        fertileEnd.setDate(fertileEnd.getDate() + 1);
+
+        const follicularStart = new Date(lastBleedingDate);
+        const follicularEnd = new Date(ovulation);
+        follicularEnd.setDate(follicularEnd.getDate() - 1);
+
+        const lutealStart = new Date(ovulation);
+        lutealStart.setDate(lutealStart.getDate() + 1);
+
+        const lutealEnd = new Date(predictedPeriod);
+        lutealEnd.setDate(lutealEnd.getDate() - 1);
+
+        const today = new Date();
+        const todayStr = formatDate(today);
+
+        let alert = "";
+
+        const daysDiff = (targetDate) => {
+            const d = new Date(targetDate);
+            const diffTime = d - today;
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        };
+
+        const isBetween = (target, start, end) => {
+            const d = new Date(target);
+            return d >= new Date(start) && d <= new Date(end);
+        };
+
+        if (isBetween(todayStr, formatDate(fertileStart), formatDate(fertileEnd))) {
+            alert = "Está no período fértil. É possível sentir aumento da libido, sensibilidade nos seios ou mudanças no humor.";
+        } else if (todayStr === ovulationDate) {
+            alert = "Hoje é o dia estimado da ovulação. Pode sentir aumento da temperatura corporal, aumento da libido ou muco cervical elástico.";
+        } else if (todayStr === nextPredictedPeriod) {
+            alert = "Hoje pode marcar o início do próximo período. Sintomas comuns incluem cólicas, irritabilidade e fadiga.";
+        } else {
+            const daysToOvulation = daysDiff(ovulationDate);
+            const daysToPeriod = daysDiff(nextPredictedPeriod);
+
+            if (daysToOvulation > 0 && daysToOvulation <= 5) {
+                alert = `A ovulação aproxima-se. Faltam ${daysToOvulation} dia(s). Fertilidade a aumentar.`;
+            } else if (daysToPeriod > 0 && daysToPeriod <= 5) {
+                alert = `A menstruação aproxima-se. Faltam ${daysToPeriod} dia(s). Pode sentir sintomas pré-menstruais.`;
+            }
+        }
+
+        res.json({
+            periodDates,
+            nextPredictedPeriod,
+            ovulationDate,
+            follicularStart: formatDate(follicularStart),
+            follicularEnd: formatDate(follicularEnd),
+            lutealStart: formatDate(lutealStart),
+            lutealEnd: formatDate(lutealEnd),
+            fertileStart: formatDate(fertileStart),
+            fertileEnd: formatDate(fertileEnd),
+            alertMessage: alert
+        });
+    } catch (err) {
+        console.error("Erro ao obter dados do calendário:", err);
+        res.status(500).json({ error: "Erro interno do servidor." });
+    } finally {
+        client.release();
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.post('/api/test', (req, res) => {
     console.log("Received body:", req.body);

@@ -5,8 +5,11 @@ import UserInfoForm from "./pages/userinfo";
 import LoginPage from "./pages/inicio";
 import DiaryHistory from "./pages/historico";
 import MiniHistory from "./components/minihistorico";
-import PeriodCalendar from "./components/calendario"; // ⬅️ calendar component
+import PeriodCalendar from "./components/calendario";
 import { getUserIdFromToken, removeToken, hasToken } from "./components/autenticacao";
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/daygrid/main.css";
+
 
 const HomePage = () => {
     const id_user = getUserIdFromToken();
@@ -49,10 +52,12 @@ const HomePage = () => {
                 </button>
             </div>
 
+            <h2 style={{ marginTop: 50, color: "#d6336c" }}></h2>
+            <PeriodCalendar id_user={id_user} />
+
             <MiniHistory id_user={id_user} />
 
-            <h2 style={{ marginTop: 50, color: "#d6336c" }}>📅 Seu Calendário do Ciclo</h2>
-            <PeriodCalendar id_user={id_user} />
+
         </div>
     );
 };
