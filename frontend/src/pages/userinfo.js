@@ -28,8 +28,7 @@ const UserInfoForm = () => {
                 typical_cycle: valores["items.0.2.items.0.value"]?.text,
                 last_menstrual_period: valores["items.0.5.items.0.value"],
                 contracetivos: valores["items.0.3.items.0.value"]?.text,
-                contraceptive_type:
-                    valores["items.0.3.items.1.value"]?.[0]?.values?.["items.0.3.items.1.items.0.value"]?.text || null,
+                contraceptive_type: valores["items.0.3.items.1.items.0.value"]?.text || null,
             };
 
             console.log("📦 Data being sent to backend:", backendData);

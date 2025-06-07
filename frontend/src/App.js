@@ -6,10 +6,11 @@ import LoginPage from "./pages/inicio";
 import DiaryHistory from "./pages/historico";
 import MiniHistory from "./components/minihistorico";
 import PeriodCalendar from "./components/calendario";
+import UserInfoDisplay from "./pages/utilizador";
 import { getUserIdFromToken, removeToken, hasToken } from "./components/autenticacao";
 import "@fullcalendar/common/main.css";
 import "@fullcalendar/daygrid/main.css";
-
+import UserStats from "./components/stats";
 
 const HomePage = () => {
     const id_user = getUserIdFromToken();
@@ -37,6 +38,7 @@ const HomePage = () => {
             <div style={{ marginTop: 30 }}>
                 <Link to="/user/new-cycle" style={linkStyle}>➕ Novo Ciclo</Link>
                 <Link to="/user/history" style={linkStyle}>📖 Ver Histórico Completo</Link>
+                <Link to="/user/details" style={linkStyle}>👤 Ver Dados do Perfil</Link>
                 <button
                     onClick={handleLogout}
                     style={{
@@ -54,10 +56,9 @@ const HomePage = () => {
 
             <h2 style={{ marginTop: 50, color: "#d6336c" }}></h2>
             <PeriodCalendar id_user={id_user} />
+            <UserStats id_user={id_user} />
 
             <MiniHistory id_user={id_user} />
-
-
         </div>
     );
 };
@@ -71,7 +72,7 @@ const ProtectedRoute = ({ children }) => {
 
 const LoginRoute = ({ children }) => {
     if (hasToken()) {
-        removeToken(); // Remove token if accessing login page while logged in
+        removeToken();
     }
     return children;
 };
@@ -108,6 +109,11 @@ const App = () => (
             <Route path="/user/history" element={
                 <ProtectedRoute>
                     <DiaryHistory />
+                </ProtectedRoute>
+            } />
+            <Route path="/user/details" element={
+                <ProtectedRoute>
+                    <UserInfoDisplay />
                 </ProtectedRoute>
             } />
             <Route path="/" element={
