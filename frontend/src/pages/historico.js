@@ -29,100 +29,28 @@ const DiaryHistory = () => {
         return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
     };
 
-    const exportToFHIR = () => {
-        const fhirBundle = {
-            resourceType: "Bundle",
-            type: "collection",
-            entry: entries.map(entry => ({
-                resource: createObservationResource(entry)
-            }))
-        };
+    const sendFHIRToBackend = async () => {
+        try {
+            for (const entry of entries) {
+                const res = await fetch("http://localhost:3001/api/enviar-mirth", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id_user, entry })
+                });
 
-        downloadAsJSON(fhirBundle, `menstrual-history-${new Date().toISOString().split('T')[0]}.json`);
-    };
+                if (!res.ok) throw new Error("Falha ao enviar uma entrada");
+            }
 
-    const createObservationResource = (entry) => {
-        return {
-            resourceType: "Observation",
-            status: "final",
-            category: [{
-                coding: [{
-                    system: "http://terminology.hl7.org/CodeSystem/observation-category",
-                    code: "survey",
-                    display: "Survey"
-                }]
-            }],
-            code: {
-                coding: [{
-                    system: "http://loinc.org",
-                    code: "49033-4",
-                    display: "Menstrual cycle"
-                }]
-            },
-            subject: {
-                reference: `Patient/${id_user}`
-            },
-            effectiveDateTime: entry.data_entrada,
-            component: [
-                {
-                    code: {
-                        coding: [{
-                            system: "http://loinc.org",
-                            code: "84756-9",
-                            display: "Menstrual flow"
-                        }]
-                    },
-                    valueString: entry.flow
-                },
-                {
-                    code: {
-                        coding: [{
-                            system: "http://loinc.org",
-                            code: "75322-8",
-                            display: "Menstrual symptoms"
-                        }]
-                    },
-                    valueString: entry.menstrual_cycle_desc || "None"
-                },
-                {
-                    code: {
-                        coding: [{
-                            system: "http://loinc.org",
-                            code: "72514-3",
-                            display: "Pain severity"
-                        }]
-                    },
-                    valueString: entry.pain_level
-                },
-                {
-                    code: {
-                        coding: [{
-                            system: "http://loinc.org",
-                            code: "68502-2",
-                            display: "Sleep duration"
-                        }]
-                    },
-                    valueString: `${entry.sleep_duration} hours`
-                }
-            ]
-        };
-    };
-
-    const downloadAsJSON = (data, filename) => {
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+            alert("✅ Todas as entradas foram enviadas para o Mirth com sucesso!");
+        } catch (err) {
+            console.error("❌ Erro ao enviar para Mirth:", err);
+            alert("Erro ao enviar dados para o Mirth.");
+        }
     };
 
     return (
         <div style={{ background: "#fff0f5", minHeight: "100vh", padding: "60px 20px" }}>
-            {/* Header with Back and Export buttons */}
+            {/* Header com Botões */}
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "30px" }}>
                 <button
                     onClick={() => navigate("/user")}
@@ -141,7 +69,7 @@ const DiaryHistory = () => {
                 </button>
 
                 <button
-                    onClick={exportToFHIR}
+                    onClick={sendFHIRToBackend}
                     style={{
                         backgroundColor: "#d6336c",
                         border: "none",
@@ -153,7 +81,7 @@ const DiaryHistory = () => {
                         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
                     }}
                 >
-                    Exportar FHIR/LOINC
+                    Enviar FHIR para Mirth
                 </button>
             </div>
 

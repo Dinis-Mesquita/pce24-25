@@ -400,7 +400,9 @@ app.get("/api/calendar/:id_user", async (req, res) => {
             lutealStart.setDate(lutealStart.getDate() + 1);
             const lutealEnd = new Date(lutealStart);
             lutealEnd.setDate(lutealStart.getDate() + (averageCycle - 18)); // 28 - (5+7+6) = 10 dias
-
+            if (periodDates.includes(formatDate(lutealEnd))) {
+                lutealEnd.setDate(lutealEnd.getDate() - 1);
+            }
             events.push(
                 { title: "🌟 Período Fértil", start: formatDate(fertileStart), end: formatDate(fertileEnd), color: "#caffbf", display: "background" },
                 { title: "Fase Menstrual", start: formatDate(menstruationStart), end: formatDate(menstruationEnd), color: "#ff758e", display: "background" },
@@ -519,6 +521,91 @@ app.get("/api/userdata/:id_user", async (req, res) => {
 
 
 
+app.post("/api/enviar-mirth", async (req, res) => {
+    const { id_user, entry } = req.body;
+
+    // Construir o recurso FHIR Observation
+    const fhirObservation = {
+        resourceType: "Observation",
+        status: "final",
+        category: [{
+            coding: [{
+                system: "http://terminology.hl7.org/CodeSystem/observation-category",
+                code: "survey",
+                display: "Survey"
+            }]
+        }],
+        code: {
+            coding: [{
+                system: "http://loinc.org",
+                code: "49033-4",
+                display: "Menstrual cycle"
+            }]
+        },
+        subject: {
+            reference: `Patient/${id_user}`
+        },
+        effectiveDateTime: entry.data_entrada,
+        component: [
+            {
+                code: {
+                    coding: [{
+                        system: "http://loinc.org",
+                        code: "84756-9",
+                        display: "Menstrual flow"
+                    }]
+                },
+                valueString: entry.flow
+            },
+            {
+                code: {
+                    coding: [{
+                        system: "http://loinc.org",
+                        code: "75322-8",
+                        display: "Menstrual symptoms"
+                    }]
+                },
+                valueString: entry.menstrual_cycle_desc || "None"
+            },
+            {
+                code: {
+                    coding: [{
+                        system: "http://loinc.org",
+                        code: "72514-3",
+                        display: "Pain severity"
+                    }]
+                },
+                valueString: entry.pain_level
+            },
+            {
+                code: {
+                    coding: [{
+                        system: "http://loinc.org",
+                        code: "68502-2",
+                        display: "Sleep duration"
+                    }]
+                },
+                valueString: `${entry.sleep_duration} hours`
+            }
+        ]
+    };
+
+    try {
+        // Log útil para debug
+        console.log("🔄 Enviando para Mirth:", JSON.stringify(fhirObservation, null, 2));
+
+        await axios.post("http://localhost:4001/api/fhir-input", fhirObservation, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        res.status(200).json({ message: "✅ FHIR enviado com sucesso ao Mirth!" });
+    } catch (err) {
+        console.error("❌ Erro ao enviar para Mirth:", err.message);
+        res.status(500).json({ error: "Erro ao enviar para Mirth", details: err.message });
+    }
+});
 
 
 

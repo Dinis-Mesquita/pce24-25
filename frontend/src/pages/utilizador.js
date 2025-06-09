@@ -26,31 +26,29 @@ const UserInfoDisplay = () => {
         fetchData();
     }, [id_user]);
 
-    const exportToFHIR = () => {
-        const fhirResource = {
-            resourceType: "Patient",
-            id: id_user,
-            extension: [
-                { url: "http://example.org/fhir/StructureDefinition/birthDate", valueDate: data.data_nascimento },
-                { url: "http://example.org/fhir/StructureDefinition/weight", valueQuantity: { value: data.peso, unit: "kg" } },
-                { url: "http://example.org/fhir/StructureDefinition/height", valueQuantity: { value: data.altura, unit: "cm" } },
-                { url: "http://example.org/fhir/StructureDefinition/menstrualCycleLength", valueInteger: data.cycle_pattern_lenght },
-                { url: "http://example.org/fhir/StructureDefinition/cyclePattern", valueString: data.cycle_patern },
-                { url: "http://example.org/fhir/StructureDefinition/lastMenstrualPeriod", valueDate: data.last_menstrual_period },
-                { url: "http://example.org/fhir/StructureDefinition/contraceptiveStatus", valueString: data.contraceptive_status },
-                ...(data.contraceptive_type ? [{ url: "http://example.org/fhir/StructureDefinition/contraceptiveType", valueString: data.contraceptive_type }] : [])
-            ]
-        };
+    const sendFHIRToBackend = async () => {
+        try {
+            const entry = {
+                data_entrada: data.last_menstrual_period,
+                flow: data.flow || "Unknown",
+                menstrual_cycle_desc: data.cycle_patern,
+                pain_level: data.pain_level || "Unknown",
+                sleep_duration: data.sleep_duration || 0
+            };
 
-        const blob = new Blob([JSON.stringify(fhirResource, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `user-info-${id_user}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+            const res = await fetch("http://localhost:3001/api/enviar-mirth", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id_user, entry })
+            });
+
+            if (!res.ok) throw new Error("Falha ao enviar a entrada");
+
+            alert("✅ Informação FHIR enviada para o Mirth com sucesso!");
+        } catch (err) {
+            console.error("❌ Erro ao enviar para o Mirth:", err);
+            alert("Erro ao enviar os dados para o Mirth.");
+        }
     };
 
     if (loading) return <p style={styles.loading}>A carregar...</p>;
@@ -59,10 +57,9 @@ const UserInfoDisplay = () => {
 
     return (
         <div style={styles.container}>
-            {/* Botões no topo, como no DiaryHistory */}
             <div style={styles.topButtons}>
                 <button onClick={() => navigate("/user")} style={styles.backButton}>← Voltar</button>
-                <button onClick={exportToFHIR} style={styles.exportButton}>Exportar FHIR/LOINC</button>
+                <button onClick={sendFHIRToBackend} style={styles.exportButton}>Enviar FHIR para Mirth</button>
             </div>
 
             <div style={styles.card}>
@@ -104,7 +101,7 @@ const styles = {
         color: "#333",
         fontWeight: "bold",
         cursor: "pointer",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
     },
     exportButton: {
         backgroundColor: "#d6336c",
@@ -114,7 +111,7 @@ const styles = {
         color: "white",
         fontWeight: "bold",
         cursor: "pointer",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
     },
     card: {
         background: "#fff",
