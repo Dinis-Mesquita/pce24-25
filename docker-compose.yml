@@ -1,0 +1,57 @@
+
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: nextgen
+      POSTGRES_USER: nextgen_user
+      POSTGRES_PASSWORD: nextgen_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nextgen_user -d nextgen"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mirth_connect:
+    image: nextgenhealthcare/connect:latest
+    container_name: mirth_connect
+    restart: always
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    environment:
+      DATABASE: 'postgres'
+      DATABASE_URL: 'jdbc:postgresql://postgres_db:5432/nextgen'
+      DATABASE_USERNAME: 'nextgen_user'
+      DATABASE_PASSWORD: 'nextgen_password'
+      # podes personalizar as passwords do keystore ou usar as default do container:
+      KEYSTORE_STOREPASS: 'changeit'
+      KEYSTORE_KEYPASS: 'changeit'
+    ports:
+      - "8443:8443"    # UI do Admin
+      - "8080:8080"    # HTTP Listener do channel
+      - "4010:4010"
+    volumes:
+      - ./mirth_data:/opt/connect/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres_db
+
+volumes:
+  pg_data:
+  mirth_data:
